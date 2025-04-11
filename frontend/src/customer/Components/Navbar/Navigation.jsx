@@ -1,79 +1,81 @@
-import { Fragment, useEffect, useState } from "react";
-import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
+import { Fragment, useEffect, useState } from 'react'
+import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import {
   Bars3Icon,
   MagnifyingGlassIcon,
   ShoppingBagIcon,
   XMarkIcon,
-} from "@heroicons/react/24/outline";
+} from '@heroicons/react/24/outline'
 
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Avatar, Button, Menu, MenuItem } from "@mui/material";
-import { navigation } from "../../../config/navigationMenu";
-import AuthModal from "../Auth/AuthModal";
-import { useDispatch, useSelector } from "react-redux";
-import { deepPurple } from "@mui/material/colors";
-import { getUser, logout } from "../../../Redux/Auth/Action";
-import { getCart } from "../../../Redux/Customers/Cart/Action";
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Avatar, Button, Menu, MenuItem } from '@mui/material'
+import { navigation } from '../../../config/navigationMenu'
+import AuthModal from '../Auth/AuthModal'
+import { useDispatch, useSelector } from 'react-redux'
+import { deepPurple } from '@mui/material/colors'
+import { getUser, logout } from '../../../Redux/Auth/Action'
+import { getCart } from '../../../Redux/Customers/Cart/Action'
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(' ')
 }
 
 export default function Navigation() {
-  const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { auth,cart } = useSelector((store) => store);
-  const [openAuthModal, setOpenAuthModal] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const openUserMenu = Boolean(anchorEl);
-  const jwt = localStorage.getItem("jwt");
-  const location=useLocation();
+  const [open, setOpen] = useState(false)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { auth, cart } = useSelector((store) => store)
+  const [openAuthModal, setOpenAuthModal] = useState(false)
+  const [anchorEl, setAnchorEl] = useState(null)
+  const openUserMenu = Boolean(anchorEl)
+  const jwt = localStorage.getItem('jwt')
+  const location = useLocation()
 
   useEffect(() => {
     if (jwt) {
-      dispatch(getUser(jwt));
-      dispatch(getCart(jwt));
+      dispatch(getUser(jwt))
+      dispatch(getCart(jwt))
     }
-  }, [jwt]);
-  
+  }, [jwt])
+
   const handleUserClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
   const handleCloseUserMenu = (event) => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   const handleOpen = () => {
-    setOpenAuthModal(true);
-  };
+    setOpenAuthModal(true)
+  }
   const handleClose = () => {
-    setOpenAuthModal(false);
-   
-  };
+    setOpenAuthModal(false)
+  }
 
   const handleCategoryClick = (category, section, item, close) => {
-    navigate(`/${category.id}/${section.id}/${item.id}`);
-    close();
-  };
+    navigate(`/${category.id}/${section.id}/${item.id}`)
+    close()
+  }
 
   useEffect(() => {
-    if (auth.user){ 
-      handleClose();
+    if (auth.user) {
+      handleClose()
     }
-    if( auth.user?.role!=="ADMIN" && (location.pathname==="/login" || location.pathname==="/register")){
+    if (
+      auth.user?.role !== 'ADMIN' &&
+      (location.pathname === '/login' || location.pathname === '/register')
+    ) {
       navigate(-1)
     }
-  }, [auth.user]);
+  }, [auth.user])
 
   const handleLogout = () => {
-    handleCloseUserMenu();
-    dispatch(logout());
-  };
-  const handleMyOrderClick=()=>{
     handleCloseUserMenu()
-    navigate("/account/order")
+    dispatch(logout())
+  }
+  const handleMyOrderClick = () => {
+    handleCloseUserMenu()
+    navigate('/account/order')
   }
 
   return (
@@ -125,9 +127,9 @@ export default function Navigation() {
                           className={({ selected }) =>
                             classNames(
                               selected
-                                ? "border-indigo-600 text-indigo-600"
-                                : "border-transparent text-gray-900",
-                              "flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium border-none"
+                                ? 'border-indigo-600 text-indigo-600'
+                                : 'border-transparent text-gray-900',
+                              'flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium border-none'
                             )
                           }
                         >
@@ -188,7 +190,7 @@ export default function Navigation() {
                               {section.items.map((item) => (
                                 <li key={item.name} className="flow-root">
                                   <p className="-m-2 block p-2 text-gray-500">
-                                    {"item.name"}
+                                    {'item.name'}
                                   </p>
                                 </li>
                               ))}
@@ -245,7 +247,7 @@ export default function Navigation() {
 
       <header className="relative bg-white">
         <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
-          Get free delivery on orders over $100
+          Get free delivery on orders over ₹400
         </p>
 
         <nav aria-label="Top" className="mx-auto">
@@ -265,7 +267,7 @@ export default function Navigation() {
                 <Link to="/">
                   <span className="sr-only">Your Company</span>
                   <img
-                    src="https://res.cloudinary.com/ddkso1wxi/image/upload/v1675919455/Logo/Copy_of_Zosh_Academy_nblljp.png"
+                    src="./images/favicon.png"
                     alt="Shopwithzosh"
                     className="h-8 w-8 mr-2"
                   />
@@ -283,9 +285,9 @@ export default function Navigation() {
                             <Popover.Button
                               className={classNames(
                                 open
-                                  ? "border-indigo-600 text-indigo-600"
-                                  : "border-transparent text-gray-700 hover:text-gray-800",
-                                "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
+                                  ? 'border-indigo-600 text-indigo-600'
+                                  : 'border-transparent text-gray-700 hover:text-gray-800',
+                                'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
                               )}
                             >
                               {category.name}
@@ -411,14 +413,14 @@ export default function Navigation() {
                       <Avatar
                         className="text-white"
                         onClick={handleUserClick}
-                        aria-controls={open ? "basic-menu" : undefined}
+                        aria-controls={open ? 'basic-menu' : undefined}
                         aria-haspopup="true"
-                        aria-expanded={open ? "true" : undefined}
+                        aria-expanded={open ? 'true' : undefined}
                         // onClick={handleUserClick}
                         sx={{
                           bgcolor: deepPurple[500],
-                          color: "white",
-                          cursor: "pointer",
+                          color: 'white',
+                          cursor: 'pointer',
                         }}
                       >
                         {auth.user?.firstName[0].toUpperCase()}
@@ -438,13 +440,13 @@ export default function Navigation() {
                         open={openUserMenu}
                         onClose={handleCloseUserMenu}
                         MenuListProps={{
-                          "aria-labelledby": "basic-button",
+                          'aria-labelledby': 'basic-button',
                         }}
                       >
                         <MenuItem onClick={handleCloseUserMenu}>
                           Profile
                         </MenuItem>
-                        
+
                         <MenuItem onClick={handleMyOrderClick}>
                           My Orders
                         </MenuItem>
@@ -475,7 +477,7 @@ export default function Navigation() {
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
                   <Button
-                    onClick={() => navigate("/cart")}
+                    onClick={() => navigate('/cart')}
                     className="group -m-2 flex items-center p-2"
                   >
                     <ShoppingBagIcon
@@ -495,5 +497,5 @@ export default function Navigation() {
       </header>
       <AuthModal handleClose={handleClose} open={openAuthModal} />
     </div>
-  );
+  )
 }

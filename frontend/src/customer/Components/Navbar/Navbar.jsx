@@ -1,13 +1,13 @@
-import { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Fragment, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
-  const [isNavigation, setIsNavigation] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
+  const [isNavigation, setIsNavigation] = useState(false)
+  const [showMenu, setShowMenu] = useState(false)
 
   const handleShowMenu = () => {
-    setShowMenu(!showMenu);
-  };
+    setShowMenu(!showMenu)
+  }
   return (
     <Fragment>
       {/* Navigation bar */}
@@ -17,12 +17,12 @@ function Navbar() {
             {/* Logo */}
             <Link to="/" className="flex items-center py-6">
               <img
-                src="https://res.cloudinary.com/ddkso1wxi/image/upload/v1675919455/Logo/Copy_of_Zosh_Academy_nblljp.png"
-                alt="Shopwithzosh"
+                src="../../.././public/images/favicon.png"
+                alt="Shopperoo"
                 className="h-8 w-8 mr-2"
               />
               <span className="font-bold text-white text-lg">
-                Shop With Zosh
+                Shop With Shopperoo
               </span>
             </Link>
 
@@ -183,6 +183,6 @@ function Navbar() {
         </div>
       )}
     </Fragment>
-  );
+  )
 }
-export default Navbar;
+export default Navbar
