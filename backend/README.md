@@ -1,5 +1,3 @@
-
-
 # API Documentation for Ecommerce Project API with Node.js and Express
 
 Welcome to the documentation for the Ecommerce Project API! This API provides a set of endpoints and functionalities to interact with our eCommerce platform programmatically. With this API, you can build applications, integrations, and automate various tasks related to our online store.
@@ -103,10 +101,8 @@ All protected endpoints require the `Authorization` header with a valid token.
 
 ## Contact
 
-For any queries or issues, please contact **Ashok Zarmariya** at `ashokzarmariya@gmail.com`.
+For any queries or issues, please contact **Kriti** at `kritijulia@gmail.com`.
 
 ## License
 
-This API is licensed under **Ashok Zarmariya**.
-
-
+This API is licensed under **Kriti**.
