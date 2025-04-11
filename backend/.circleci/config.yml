@@ -1,0 +1,31 @@
+version: 2.1
+
+jobs:
+  build_test:
+    docker:
+      - image: cimg/node:18.20
+    steps:
+      - checkout
+      - run:
+          name: Install npm dependencies
+          command: npm install --save
+
+  build_docker_image:
+    docker:
+      - image: cimg/node:18.20
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: false
+      - run:
+          name: Build Docker image
+          command: |
+            docker build -t Shopperoo-backend -t yesiamkriti/Shopperoo-backend:latest . 
+            echo $DOCKER_PASSWORD | docker login -u yesiamkriti --password-stdin
+            docker push yesiamkriti/Shopperoo-backend:latest
+
+workflows:
+  build_and_test:
+    jobs:
+      - build_test
+      - build_docker_image
