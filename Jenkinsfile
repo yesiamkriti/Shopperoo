@@ -3,7 +3,7 @@ pipeline {
 
   environment {
     DOCKERHUB_USERNAME = 'yesiamkriti'
-    DOCKERHUB_PASSWORD = credentials('dockerhub') // You must create this secret in Jenkins
+    DOCKERHUB_PASSWORD = credentials('dockerhub') // Add in Jenkins credentials
   }
 
   stages {
@@ -14,11 +14,6 @@ pipeline {
     }
 
     stage('Install Dependencies - Backend') {
-      agent {
-        docker {
-          image 'node:18'
-        }
-      }
       steps {
         dir('backend') {
           sh 'npm install'
@@ -27,11 +22,6 @@ pipeline {
     }
 
     stage('Install Dependencies - Frontend') {
-      agent {
-        docker {
-          image 'node:18'
-        }
-      }
       steps {
         dir('frontend') {
           sh 'npm install'
