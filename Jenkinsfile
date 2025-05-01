@@ -40,17 +40,18 @@ pipeline {
       }
     }
 
-    stage('Push to DockerHub') {
-      steps {
-        script {
-          bat '''
-            echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
-            docker push yesiamkriti/shopperoo-backend:latest
-            docker push yesiamkriti/shopperoo-frontend:latest
-          '''
-        }
-      }
+stage('Push to DockerHub') {
+  steps {
+    withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+      bat '''
+        echo %DOCKERHUB_PASSWORD% | docker login -u %DOCKERHUB_USERNAME% --password-stdin
+        docker push yesiamkriti/shopperoo-backend:latest
+        docker push yesiamkriti/shopperoo-frontend:latest
+      '''
     }
+  }
+}
+
 
     stage('Deploy with Docker Compose') {
       steps {
