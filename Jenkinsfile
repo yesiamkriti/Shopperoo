@@ -33,8 +33,8 @@ pipeline {
       steps {
         script {
           bat '''
-            docker build -t shopperoo-backend -t yesiamkriti/shopperoo-backend:latest ./backend
-            docker build -t shopperoo-frontend -t yesiamkriti/shopperoo-frontend:latest ./frontend
+            docker build -t yesiamkriti/shopperoo-backend:latest ./backend
+            docker build -t yesiamkriti/shopperoo-frontend:latest ./frontend
           '''
         }
       }
