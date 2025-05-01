@@ -16,7 +16,7 @@ pipeline {
     stage('Install Dependencies - Backend') {
       steps {
         dir('backend') {
-          sh 'npm install'
+          bat 'npm install'
         }
       }
     }
@@ -24,7 +24,7 @@ pipeline {
     stage('Install Dependencies - Frontend') {
       steps {
         dir('frontend') {
-          sh 'npm install'
+          bat 'npm install'
         }
       }
     }
@@ -32,7 +32,7 @@ pipeline {
     stage('Build Docker Images') {
       steps {
         script {
-          sh '''
+          bat '''
             docker build -t shopperoo-backend -t yesiamkriti/shopperoo-backend:latest ./backend
             docker build -t shopperoo-frontend -t yesiamkriti/shopperoo-frontend:latest ./frontend
           '''
@@ -43,7 +43,7 @@ pipeline {
     stage('Push to DockerHub') {
       steps {
         script {
-          sh '''
+          bat '''
             echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
             docker push yesiamkriti/shopperoo-backend:latest
             docker push yesiamkriti/shopperoo-frontend:latest
@@ -54,8 +54,8 @@ pipeline {
 
     stage('Deploy with Docker Compose') {
       steps {
-        sh 'docker-compose down || true'
-        sh 'docker-compose up -d --build'
+        bat 'docker-compose down || true'
+        bat 'docker-compose up -d --build'
       }
     }
   }
