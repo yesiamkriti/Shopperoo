@@ -62,7 +62,7 @@ pipeline {
 
   post {
     success {
-      echo '🎉 CI/CD Pipeline completed successfully!'
+      echo 'Congratulations 🎉 CI/CD Pipeline completed successfully!'
     }
     failure {
       echo '❌ Build failed.'
