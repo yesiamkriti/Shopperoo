@@ -19,9 +19,9 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            docker build -t shopperoo-backend -t yesiamkriti/shopperoo-backend:latest . 
+            docker build -t shopperoo-frontend -t yesiamkriti/shopperoo-frontend:latest . 
             echo $DOCKER_PASSWORD | docker login -u yesiamkriti --password-stdin
-            docker push yesiamkriti/shopperoo-backend:latest
+            docker push yesiamkriti/shopperoo-frontend:latest
 
 workflows:
   build_and_test:
