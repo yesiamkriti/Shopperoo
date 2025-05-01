@@ -53,13 +53,13 @@ stage('Push to DockerHub') {
 }
 
 
-    stage('Deploy with Docker Compose') {
-      steps {
-        bat 'docker-compose down || true'
-        bat 'docker-compose up -d --build'
-      }
-    }
-  }
+  //   stage('Deploy with Docker Compose') {
+  //     steps {
+  //       bat 'docker-compose down || true'
+  //       bat 'docker-compose up -d --build'
+  //     }
+  //   }
+  // }
 
   post {
     success {
