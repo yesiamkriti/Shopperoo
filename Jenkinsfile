@@ -72,7 +72,7 @@ pipeline {
 
                         echo "Starting new containers..."
                         docker run -d -p 80:80 --name frontend $FRONTEND_ECR:${BUILD_NUMBER}
-                        docker run -d -p 5000:5000 --name backend $BACKEND_ECR:${BUILD_NUMBER}
+                        docker run -d -p 5454:5454 --name backend $BACKEND_ECR:${BUILD_NUMBER}
                     '
                     """
                 }
