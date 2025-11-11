@@ -14,7 +14,7 @@ const createUser = async (userData)=>{
         if(isUserExist){
             // const del =await User.deleteOne({email});
             // console.log("del ",del);
-            throw new Error("user already exist with email : ",email)
+            throw new Error(`user already exist with email :   ${email}` )
         }
 
         password=await bcrypt.hash(password,8);

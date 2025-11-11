@@ -9,6 +9,10 @@ app.use(cors())
 app.get("/",(req,res)=>{
     return res.status(200).send({message:"welcome to ecommerce api - node"})
 })
+// server.js (Node.js) for monitoring
+app.get('/api/health', (req, res) => {
+  res.status(200).send('OK');
+});
 
 const authRouter=require("./routes/auth.routes.js")
 app.use("/auth",authRouter)
@@ -43,5 +47,6 @@ app.use("/api/ratings",ratingRouter);
 // admin routes handler
 const adminOrderRoutes=require("./routes/adminOrder.routes.js");
 app.use("/api/admin/orders",adminOrderRoutes);
+
 
 module.exports={app};
