@@ -5,9 +5,8 @@ pipeline {
         AWS_REGION     = 'eu-north-1'
         FRONTEND_REPO  = 'frontend-repo'
         BACKEND_REPO   = 'backend-repo'
-        ACCOUNT_ID     = 060795940192
-        FRONTEND_ECR   = "${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${FRONTEND_REPO}"
-        BACKEND_ECR    = "${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${BACKEND_REPO}"
+        FRONTEND_ECR   = "060795940192.dkr.ecr.${AWS_REGION}.amazonaws.com/${FRONTEND_REPO}"
+        BACKEND_ECR    = "060795940192.dkr.ecr.${AWS_REGION}.amazonaws.com/${BACKEND_REPO}"
         DEPLOY_SERVER  = "ec2-user@13.60.219.193"//ec2 app-server instance ip
     }
 
