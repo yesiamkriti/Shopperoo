@@ -16,12 +16,8 @@ COPY . .
 RUN npm run build
 
 # ---- Production Stage ----
-FROM nginx:stable-alpine
-# For CRA: /build, for Vite: /dist
+FROM nginx:stable-alpine    
 COPY --from=build /app/build /usr/share/nginx/html
-
-# Optional custom Nginx config
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
