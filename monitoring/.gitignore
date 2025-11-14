@@ -1,0 +1,57 @@
+# ================================
+# Nagios runtime data (DO NOT COMMIT)
+# ================================
+nagios/var/
+nagios/var/*
+
+# Nagios logs
+nagios/var/nagios.log
+nagios/var/*.log
+nagios/var/spool/
+nagios/var/rw/
+nagios/var/status.dat
+
+# Backup or auto-generated Nagios configs
+nagios/etc/*.bak
+nagios/etc/*.orig
+nagios/etc/*~
+
+# ================================
+# Sensitive authentication files
+# ================================
+nagios/etc/htpasswd.users
+
+# ================================
+# Custom plugin temp files
+# ================================
+custom-plugins/*.tmp
+custom-plugins/*.log
+
+# ================================
+# Docker & System
+# ================================
+# Docker generated stuff
+**/.DS_Store
+**/Thumbs.db
+docker-compose.override.yml
+
+# Python virtual environments (if used)
+venv/
+.env/
+
+# Node modules (if your custom plugins use JS)
+node_modules/
+
+# ================================
+# Ignore compiled binaries
+# ================================
+*.o
+*.so
+*.pyc
+__pycache__/
+
+# ================================
+# Logs
+# ================================
+*.log
+logs/
