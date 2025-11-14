@@ -10,9 +10,10 @@ app.get("/",(req,res)=>{
     return res.status(200).send({message:"welcome to ecommerce api - node"})
 })
 // server.js (Node.js) for monitoring
-app.get('/api/health', (req, res) => {
-  res.status(200).send('OK');
+apapp.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
 });
+
 
 const authRouter=require("./routes/auth.routes.js")
 app.use("/auth",authRouter)
