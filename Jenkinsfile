@@ -94,8 +94,13 @@ pipeline {
                         ssh -o StrictHostKeyChecking=no ec2-user@51.20.74.216 '
                             echo "Deploying Nagios monitoring..."
                             cd /opt/monitoring
-                            docker-compose down || true
-                            docker-compose up -d
+                            if command -v docker-compose >/dev/null 2>&1; then
+                                docker-compose down || true
+                                docker-compose up -d
+                            else
+                                docker compose down || true
+                                docker compose up -d
+                            fi
                         '
                     """
                 }
