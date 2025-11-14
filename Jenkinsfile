@@ -7,7 +7,7 @@ pipeline {
         BACKEND_REPO   = 'backend-repo'
         FRONTEND_ECR   = "060795940192.dkr.ecr.${AWS_REGION}.amazonaws.com/${FRONTEND_REPO}"
         BACKEND_ECR    = "060795940192.dkr.ecr.${AWS_REGION}.amazonaws.com/${BACKEND_REPO}"
-        DEPLOY_SERVER  = "ec2-user@51.20.74.216"
+        DEPLOY_SERVER  = "ec2-user@556.228.7.53"
     }
 
     stages {
@@ -110,7 +110,7 @@ pipeline {
 
     post {
         success {
-            echo "✅ Deployment successful! Nagios is live at http://51.20.74.216:8080"
+            echo "✅ Deployment successful! Nagios is live at http://56.228.7.53:8080"
         }
         failure {
             echo "❌ Deployment failed. Check Jenkins logs."
