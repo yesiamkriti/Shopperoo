@@ -82,16 +82,16 @@ pipeline {
                 sshagent (credentials: ['ec2-ssh-key']) {
                     sh """
                         # Ensure /opt/monitoring exists and ec2-user can write to it
-                        ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER}'
+                        ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER} '
                             sudo mkdir -p /opt/monitoring
                             sudo chown ec2-user:ec2-user /opt/monitoring
                         '
 
-                        # Upload monitoring folder to the server
-                        scp -r -o StrictHostKeyChecking=no monitoring ec2-user@51.20.74.216:/opt/
+                        # Upload monitoring folder to the SAME SERVER
+                        scp -r -o StrictHostKeyChecking=no monitoring ${DEPLOY_SERVER}:/opt/
 
                         # Restart the monitoring stack
-                        ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER}'
+                        ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER} '
                             echo "Deploying Nagios monitoring..."
                             cd /opt/monitoring
                             if command -v docker-compose >/dev/null 2>&1; then
