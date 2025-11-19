@@ -10,7 +10,7 @@ app.get("/",(req,res)=>{
     return res.status(200).send({message:"welcome to ecommerce api - node"})
 })
 // server.js (Node.js) for monitoring
-apapp.get("/health", (req, res) => {
+app.get("/health", (req, res) => {
   res.status(200).json({ status: "ok" });
 });
 
