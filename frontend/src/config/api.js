@@ -2,7 +2,7 @@
 import axios from 'axios';
 // const DEPLOYED='https://pear-poised-hen.cyclic.app/'
 const VERCELHOST='https://shopperoo-backend-five.vercel.app/'
-const LOCALHOST='http://51.20.109.216:5454/'
+const LOCALHOST='http://13.51.106.118:5454/'
 
 export const API_BASE_URL = LOCALHOST;
 
