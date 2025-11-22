@@ -7,7 +7,7 @@ pipeline {
         BACKEND_REPO   = 'backend-repo'
         FRONTEND_ECR   = "060795940192.dkr.ecr.${AWS_REGION}.amazonaws.com/${FRONTEND_REPO}"
         BACKEND_ECR    = "060795940192.dkr.ecr.${AWS_REGION}.amazonaws.com/${BACKEND_REPO}"
-        DEPLOY_SERVER  = "ec2-user@13.51.106.118"//ec2 app-server instance ip
+        DEPLOY_SERVER  = "ec2-user@13.53.126.216"//ec2 app-server instance ip
     }
 
     stages {
